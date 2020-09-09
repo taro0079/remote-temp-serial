@@ -30,10 +30,12 @@ while (running):
         elapsedTime = round(nowtime - starttime) #  calculate elapsed time
         divTime = 2 # minuites
 
+        strTemp = ser.readline()
+
         if elapsedTime % (divTime * 60) == 0:
             dtNow = datetime.datetime.now()
             nowTimeTxt = dtNow.strftime('%Y-%m-%d %H:%M:%S')
-            temp = float(ser.readline())
+            temp = float(strTemp)
             data = [nowTimeTxt, temp]
             preJsonData = {'date' : nowTimeTxt, 'temp' : temp}
             jsonData = json.dumps(preJsonData).encode('utf-8')
